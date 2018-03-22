@@ -2,27 +2,50 @@
 <html>
 <head>
     <title>Pixel Art Maker!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
-    <link rel="stylesheet" href="styles.css">
+<!--    Link Google Fonts-->
+     <link href="https://fonts.googleapis.com/css?family=Elsie:900|Roboto" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>Lab: Pixel Art Maker</h1>
+    
+    <div id="container">
+        
+        <div id="tool-panel" class="panel">
+            <div class="tool tool1">
+                
+            </div>
+            <div class="tool tool2"></div>
+            <div class="tool tool3"></div>
+            <div class="tool tool4"></div>
+            <div class="tool tool5"></div>
+            <div class="tool tool6"></div>
+        </div>
+        
+        <div id="grid">
+            <table id="pixelCanvas"></table>
+        </div>
+        
+        <div id="setting-panel" class="panel">
+            <div class="setting setting1">
+                <input type="color" class="colorPicker" id="colorPickerForeground" value="#FEDD00">
+            </div>
+            <div class="setting setting2">
+                <input type="color" class="colorPicker" id="colorPickerBackground" value="#588C7E">
+            </div>
+            <div class="setting setting3">
+                <form id="sizePicker">
+                    Grid Height:
+                    <input type="number" id="inputHeight" name="height" min="1" value="1">
+                    Grid Width:
+                    <input type="number" id="inputWidth" name="width" min="1" value="1">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+        
+    </div>
 
-    <h2>Choose Grid Size</h2>
-    <form id="sizePicker">
-        Grid Height:
-        <input type="number" id="inputHeight" name="height" min="1" value="1">
-        Grid Width:
-        <input type="number" id="inputWeight" name="width" min="1" value="1">
-        <input type="submit">
-    </form>
-
-    <h2>Pick A Color</h2>
-    <input type="color" id="colorPicker">
-
-    <h2>Design Canvas</h2>
-    <table id="pixelCanvas"></table>
-
-    <script src="designs.js"></script>
+    <script src="js/designs.js"></script>
 </body>
 </html>
