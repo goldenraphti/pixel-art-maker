@@ -1,11 +1,11 @@
 // useless here since the script is located just before the closing  body tag, but still, just in case it gets reused somwhere else
 //document.addEventListener("DOMContentLoaded", function(event) {
 
-let pixelCanvas = document.querySelector('#pixelCanvas');
+
 
     // Select color input for Foreground
     
-    let foregroundColor ;
+    let foregroundColor = '#FEDD00' ;
     function setFGColor(evt) {
         foregroundColor = evt.target.value;
     };
@@ -14,18 +14,17 @@ let pixelCanvas = document.querySelector('#pixelCanvas');
     colorPickerForeground.select();
     
     // Select color input for BackForeground
-    let backgroundColor;
+    let backgroundColor = '#588C7E' ;
     function setBGColor(evt) {
         backgroundColor = evt.target.value;
     }
     colorPickerBackground = document.querySelector("#colorPickerBackground");
     colorPickerBackground.addEventListener("input", setBGColor, false);
+    colorPickerBackground.addEventListener("change", setBGColor, false);
     colorPickerBackground.select();
 
 
-    // Select size input
-    let gridHeight;
-    let gridWidth;
+
 
     
 
@@ -34,19 +33,37 @@ let pixelCanvas = document.querySelector('#pixelCanvas');
 
     function makeGrid() {   // Select and create grid size
     
+        // select the table
+        let pixelCanvas = document.querySelector('#pixelCanvas');
+        
+        // Select size input
+        let gridHeight;
+        let gridWidth;
+        
         gridHeight = document.querySelector("#inputHeight").value;
         gridWidth = document.querySelector("#inputWidth").value;
 
-        console.log(`height is ${gridHeight} and width is ${gridWidth}`);
+        console.log(`gridHeight is ${gridHeight} and gridWidth is ${gridWidth}`);
 
-        for (let row = 0 ; row < gridHeight ; row++) {  
+        for (let i = 0 ; i < gridHeight ; i++) {
+            console.log(`before building row ${i} of ${gridHeight}`);
             pixelCanvas.insertAdjacentHTML('beforeend', '<tr></tr>');
         };
-        for (let column = 0 ; column < gridWidth ; column++) {  
-            document.querySelector('tr').insertAdjacentHTML('beforeend', '<td></td>');
-        };
+        
+        let trs = document.querySelectorAll("tr");
+        console.log(`trs.length is ${trs.length}`);
+        for (let i = 0 ; i < gridWidth ; i++) { 
+            console.log(`before building column ${i} of ${gridWidth}`);
+            
+            for (let tr = 0; tr < trs.length; tr++) {
+                console.log(`before building on tr ${tr} of ${trs.length}`);
+                trs[tr].insertAdjacentHTML('beforeend', '<td></td>');
+            }
+        }
+        
         // creates the css background color decided before submit grid creation
-        document.getElementsByTagName('td').style.background =  backgroundColor;
+//        console.log(`background color is ${backgroundColor}`);
+//        document.getElementsByTagName("td").style.backgroundColor =  backgroundColor;
         
     };
 
@@ -70,19 +87,21 @@ let pixelCanvas = document.querySelector('#pixelCanvas');
 
     });
     
-    $("#eraser").click(function(evt){    // reset grid to initial colours
-        evt.preventDefault();
-        resetGrid();
-    });
-
-    $("#delete-grid-button").click(function(evt){    // erase existing grid function
-        evt.preventDefault();
-        deleteGrid();
-    });
+//    $("#eraser").click(function(evt){    // reset grid to initial colours
+//        evt.preventDefault();
+//        resetGrid();
+//    });
+//
+//    $("#delete-grid-button").click(function(evt){    // erase existing grid function
+//        evt.preventDefault();
+//        deleteGrid();
+//    });
     
-    paintColor();   //  call for painting function
+//    paintColor();   //  call for painting function
     
 
     
 
 //};
+
+//TODO : make it JS ES6 ( for loops -> for of loops, function arrows => ) 
