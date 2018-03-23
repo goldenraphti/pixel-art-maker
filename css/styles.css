@@ -67,13 +67,15 @@ ul {
     
     --light-grey:#eaeaea;
     --light-grey-bg:rgba(234, 234, 234, 0.7);
+    --light-medium-grey: #bababa;
     --medium-grey: #585858;
     --dark-grey: #292929;
+    --dark-grey-shadow: rgba(21, 21, 21, 0.63);
     --gradient-nav-start: #9b00af;
     --gradient-nav-end: #39007c;
     
     --margin-tool: 35px;
-    --size-cell: 20px;
+    --size-cell: 3vmin;
     --height-header: 80px;
     --height-header-with-margin: calc( var(--height-header) + 20px);
     --UI-border-radius: 0.2rem;
@@ -120,7 +122,7 @@ h1 {
     align-items: center;
     border-radius: var(--UI-border-radius);
     margin: 10px;
-    box-shadow: 0 0 10px 1px var(--dark-grey);
+    box-shadow: 0 0 10px 1px var(--dark-grey-shadow);
     background: var(--medium-grey);
     position: absolute;
 }
@@ -130,6 +132,7 @@ h1 {
     height: calc( 6 * (var(--margin-tool) + calc( (50px - var(--margin-tool)))));
     left: 0;
     top: calc( 45vh - (( 6 * (var(--margin-tool) + calc( (50px - var(--margin-tool))))) / 2 ) );
+    display: none;
 }
 
 #setting-panel {
@@ -187,8 +190,12 @@ td {
     width: var(--size-cell);
 }
 
+
 input[type=number] {
     width: 4em;
+    border-radius: var(--UI-border-radius);
+    border: none;
+    padding: 5px;
 }
 
 form {
@@ -196,4 +203,38 @@ form {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border: 0.5px solid var(--light-medium-grey);
+    padding: 10px;
+    border-radius: var(--UI-border-radius);
 }
+
+form >* {
+    margin: 5px 0;
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    z-index: 10;
+}
+
+input[type=submit] {
+    padding: 0;
+}
+
+footer {
+    font-size: 0.9em;
+    color: var(--light-grey);
+}
+
+/*TODO: create export feature*/
+/*TODO: create mode-panel to switch from kid mode, mobile mode, grow-up, or artist mode (a mode simpler with less colors, but already picked, bigger radius, and can't screw up things by clicking around) */
+/*TODO: toggle grid view (view/hide grid) */
+/*TODO: change cursor pointer (possibly importing vector)*/
+/*TODO: cursor on horizontal line to change cursor radiu (brush size)*/
+/*TODO: save feature*/
+/*TODO: undo and redo steps, for about 8 steps*/
+/*TODO display 8 last colors, and 8 suggested colors*/
+/*TODO: erase feature*/
+/*TODO: paint feature*/
+/*TODO: crop/expand canvas (again could use a linear cursor, with crop on one side and expand on the other, and when get on one side its label (crop or expand) gets bigger and get its color (lower filter grayscale)(red for crop and green for expand))*/

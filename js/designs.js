@@ -1,7 +1,7 @@
 // useless here since the script is located just before the closing  body tag, but still, just in case it gets reused somwhere else
 //document.addEventListener("DOMContentLoaded", function(event) {
 
-
+const startingTime = performance.now();
 
     // Select color input for Foreground
     
@@ -89,27 +89,27 @@
 
     };
 
-    function paintColor() {    // Select color input
+    let mouseDownStatus = false;    // check if mouse is pressed so draw only when pressed
 
-//        let mouseDownStatus = false;    // check if mouse is pressed so draw only when pressed
-//        
-//        document.addEventListener('mousedown',function() {
-//                mouseDownStatus = true;
-//            });
-//        document.addEventListener('mouseup',function() {
-//                mouseDownStatus = false;
-//        });
-//                                  
-//        pixelCanvas.addEventListener('mouseleave',function() {
-//                mouseDownStatus = false;
-//        });
-//        
+    function paintColor() {    // Select color input
+        
+        document.addEventListener('mousedown',function() {
+                mouseDownStatus = true;
+            });
+        document.addEventListener('mouseup',function() {
+                mouseDownStatus = false;
+        });
+                                  
+        pixelCanvas.addEventListener('mouseleave',function() {
+                mouseDownStatus = false;
+        });
+        
         
         pixelCanvas.addEventListener('mousemove', function (evt) {
-  //          if('mousedown' === true){
-                console.log('you just clicked a text saying: ' + evt.target.textContent);
+            if(mouseDownStatus === true){
+                console.log(`mouseDownStatus = ${mouseDownStatus}`);
                 evt.target.style.backgroundColor = foregroundColor;
-   //         };
+            };
         });
             
             
@@ -140,7 +140,8 @@
 //        deleteGrid();
 //    });
 
-    
+const endingTime = performance.now();
+console.log('This code took ' + (endingTime - startingTime) + ' milliseconds.');
 
     
 
