@@ -74,6 +74,9 @@ ul {
     
     --margin-tool: 35px;
     --size-cell: 20px;
+    --height-header: 80px;
+    --height-header-with-margin: calc( var(--height-header) + 20px);
+    --UI-border-radius: 0.2rem;
 }
 
 body {
@@ -87,18 +90,27 @@ body {
 
 }
 
+header {
+    width: 100vw;
+    z-index: 10;
+    height: var(--height-header);
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h1 {
     font-family: 'Elsie', cursive;
     font-size: 70px;
-    margin: 0.2em;
 }
 
-h2 {
-    margin: 1em 0 0.25em;
-}
-
-h2:first-of-type {
-    margin-top: 0.5em;
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc( 95vh - var(--height-header-with-margin));
+    align-items: center;
 }
 
 .panel {
@@ -106,7 +118,7 @@ h2:first-of-type {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 0.3rem;
+    border-radius: var(--UI-border-radius);
     margin: 10px;
     box-shadow: 0 0 10px 1px var(--dark-grey);
     background: var(--medium-grey);
@@ -125,6 +137,27 @@ h2:first-of-type {
     min-height: 100px;
     min-width: 100px;
     top: 30vh;
+    padding: 10px;
+}
+
+input[type=color] {
+    padding: 0;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #fff;
+}
+
+#colorPickerForeground {
+    position: relative;
+    left: -15px;
+    top: 10px;
+    z-index: 1;
+}
+
+#colorPickerBackground {
+    position: relative;
+    left: +15px;
+    top: -10px;
 }
 
 .tool {
@@ -132,7 +165,7 @@ h2:first-of-type {
     height:  var(--margin-tool);
     background: var(--light-grey);
     margin:  calc( (50px - var(--margin-tool)) / 2)  auto;
-    border-radius: 0.3rem;
+    border-radius: var(--UI-border-radius);
 }
 
 table,

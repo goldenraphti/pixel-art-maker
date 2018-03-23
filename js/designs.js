@@ -8,9 +8,10 @@
     let foregroundColor = '#FEDD00' ;
     function setFGColor(evt) {
         foregroundColor = evt.target.value;
-    };
+    }
     colorPickerForeground = document.querySelector("#colorPickerForeground");
-    colorPickerForeground.addEventListener("input", setBGColor, false);
+    colorPickerForeground.addEventListener("input", setFGColor, false);
+    colorPickerForeground.addEventListener("change", setFGColor, false);
     colorPickerForeground.select();
     
     // Select color input for BackForeground
@@ -62,8 +63,14 @@
         }
         
         // creates the css background color decided before submit grid creation
-//        console.log(`background color is ${backgroundColor}`);
-//        document.getElementsByTagName("td").style.backgroundColor =  backgroundColor;
+        console.log(`background color is ${backgroundColor}`);
+        //create variable for all cells
+        let gridCells = document.querySelectorAll("td");
+        //paint all cells of the grid iterating through the nodelist gridCells
+        for (let gridCell = 0; gridCell < gridCells.length; gridCell++) {
+            console.log(`painting BG gridCell ${gridCell} of ${gridCells.length}`);
+            gridCells[gridCell].style.backgroundColor =  backgroundColor;
+        }
         
     };
 
@@ -73,9 +80,41 @@
     };
 
     function deleteGrid() {  // Erase eventual existing grid
-        pixelCanvas.remove;
+        
+        let gridCells = document.querySelectorAll("td");
+        //removes last child of the node (here the grid canvas) until there is none more
+        while (pixelCanvas.hasChildNodes()) {
+            pixelCanvas.removeChild(pixelCanvas.lastChild);
+        }
+
     };
 
+    function paintColor() {    // Select color input
+
+//        let mouseDownStatus = false;    // check if mouse is pressed so draw only when pressed
+//        
+//        document.addEventListener('mousedown',function() {
+//                mouseDownStatus = true;
+//            });
+//        document.addEventListener('mouseup',function() {
+//                mouseDownStatus = false;
+//        });
+//                                  
+//        pixelCanvas.addEventListener('mouseleave',function() {
+//                mouseDownStatus = false;
+//        });
+//        
+        
+        pixelCanvas.addEventListener('mousemove', function (evt) {
+  //          if('mousedown' === true){
+                console.log('you just clicked a text saying: ' + evt.target.textContent);
+                evt.target.style.backgroundColor = foregroundColor;
+   //         };
+        });
+            
+            
+        return false;
+    };
 
     
    
@@ -86,7 +125,11 @@
         makeGrid();
 
     });
-    
+
+        
+    paintColor();   //  call for painting function
+
+
 //    $("#eraser").click(function(evt){    // reset grid to initial colours
 //        evt.preventDefault();
 //        resetGrid();
@@ -96,8 +139,7 @@
 //        evt.preventDefault();
 //        deleteGrid();
 //    });
-    
-//    paintColor();   //  call for painting function
+
     
 
     
@@ -105,3 +147,4 @@
 //};
 
 //TODO : make it JS ES6 ( for loops -> for of loops, function arrows => ) 
+//TODO : delete all console.logs 
